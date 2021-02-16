@@ -28,7 +28,7 @@ jobs:
     steps:
       - name: delete
         run: |
-          
+          rm -rf $GITHUB_WORKSPACE/*
       - uses: TobKed/github-forks-sync-action@master
         with:
           github_token: ${{ secrets.ACTION_BUILD_TOKEN }} # 令牌
