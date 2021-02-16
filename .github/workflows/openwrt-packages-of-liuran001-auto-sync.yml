@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [packages-19.07]
+        target: [packages]
         
     steps:
       - name: delete
