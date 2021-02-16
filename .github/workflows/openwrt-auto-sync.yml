@@ -18,7 +18,7 @@ jobs:
           github_token: ${{ secrets.ACTION_BUILD_TOKEN }} # 令牌
           upstream_repository: openwrt/openwrt  # 上游仓库
           target_repository: dylan8888/openwrt  # 你要推送的仓库
-          upstream_branch: master  # 默认是拉取上游仓库的master分支
-          target_branch: master  # 默认推送到你的仓库master分支
+          upstream_branch: openwrt-21.02  # 默认是拉取上游仓库的master分支
+          target_branch: openwrt-21.02  # 默认推送到你的仓库master分支
           force: true  # 是否强制推送
           tags: true  # 确定是否使用-tags
