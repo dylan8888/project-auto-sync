@@ -1,0 +1,57 @@
+name: openwrt-packages-of-kenzok8-auto-sync
+
+on:
+  push:
+    branches:
+      -master
+  workflow_dispatch:
+  schedule:
+    - cron: 0 */24 * * *   # 每隔12小时
+  watch:                                                        # 监视操作
+    types: [started]                                            # 点击 Star 之后
+    
+env: 
+  REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
+  SCKEY: ${{ secrets.SCKEY }}
+  TZ: Asia/Shanghai
+
+jobs:
+  build:
+    runs-on: Ubuntu-20.04
+
+    name: Update ${{matrix.target}}
+    strategy:
+      fail-fast: false
+      matrix:
+        target: [master]
+        
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    
+    - name: Initialization environment
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        sudo -E apt-get -qq update
+        sudo -E apt-get -qq install git subversion git-core wget
+        sudo timedatectl set-timezone "$TZ"
+        git config --global user.email "dylan8888+github-actions[bot]@users.noreply.github.com"
+        git config --global user.name "github-actions[bot]"
+    - name: Clone packages
+      run: |
+        cd $GITHUB_WORKSPACE
+        git clone -b ${{matrix.target}} https://github.com/kenzok8/openwrt-packages.git ${{matrix.target}}
+        git remote add target https://${{ secrets.REPO_TOKEN }}@github.com/dylan8888/openwrt-packages-of-kenzok8.git
+        cd ${{matrix.target}}
+        rm -Rf *
+        git rm --cache *
+    
+    - name: Upload
+      env: 
+        GITHUB_TOKEN: ${{ secrets.REPO_TOKEN }}
+      run: |
+        cd $GITHUB_WORKSPACE
+        git add .
+        git commit -m "同步源码于$(TZ='Asia/Shanghai' date +%Y年%m月%d号-%H点%M分)"
+        git push --quiet target HEAD:${{matrix.target}} || exit 0
