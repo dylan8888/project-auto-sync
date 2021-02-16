@@ -41,7 +41,7 @@ jobs:
     - name: Clone packages
       run: |
         cd $GITHUB_WORKSPACE
-        git clone -b ${{matrix.target}} https://github.com/liuran001/openwrt-package.git ${{matrix.target}}
+        git clone -b ${{matrix.target}} https://github.com/liuran001/openwrt-packages.git ${{matrix.target}}
         git remote add target https://${{ secrets.REPO_TOKEN }}@github.com/dylan8888/openwrt-packages-of-liuran001.git
         cd ${{matrix.target}}
         rm -Rf *
