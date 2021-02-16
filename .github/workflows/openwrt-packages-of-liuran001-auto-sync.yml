@@ -31,7 +31,7 @@ jobs:
           rm -rf $GITHUB_WORKSPACE/*
       - uses: TobKed/github-forks-sync-action@master
         with:
-          github_token: ${{ secrets.ACTION_BUILD_TOKEN }} # 令牌
+          github_token: ${{ secrets.REPO_TOKEN }} # 令牌
           upstream_repository: liuran001/openwrt-packages  # 上游仓库
           target_repository: dylan8888/openwrt-packages-of-liuran001  # 你要推送的仓库
           upstream_branch: ${{matrix.target}}  # 默认是拉取上游仓库的master分支
