@@ -44,8 +44,8 @@ jobs:
         git clone -b ${{matrix.target}} https://github.com/kenzok8/openwrt-packages.git ${{matrix.target}}
         git remote add target https://${{ secrets.REPO_TOKEN }}@github.com/dylan8888/openwrt-packages-of-kenzok8.git
         cd ${{matrix.target}}
-        rm -Rf *
-        git rm --cache *
+        ##rm -Rf *
+        ##git rm --cache *
     
     - name: Upload
       env: 
