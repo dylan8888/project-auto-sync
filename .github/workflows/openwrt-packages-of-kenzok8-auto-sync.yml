@@ -42,6 +42,7 @@ jobs:
       run: |
         cd $GITHUB_WORKSPACE
         git clone -b ${{matrix.target}} https://github.com/kenzok8/openwrt-packages.git ${{matrix.target}}
+        git remote set-url origin https://oauth2:892d07c8d47edef330f616acc33696c2dc1289a4@github.com/dylan8888/openwrt-packages-of-kenzok8.git
         cd ${{matrix.target}}
     
     - name: Upload
@@ -51,4 +52,4 @@ jobs:
         cd $GITHUB_WORKSPACE
         git add .
         git commit -m "同步源码于$(TZ='Asia/Shanghai' date +%Y年%m月%d号-%H点%M分)"
-        git push --quiet "https://oauth2:892d07c8d47edef330f616acc33696c2dc1289a4@github.com/dylan8888/openwrt-packages-of-kenzok8.git" HEAD:${{matrix.target}} || exit 0
+        git push HEAD:${{matrix.target}} || exit 0
