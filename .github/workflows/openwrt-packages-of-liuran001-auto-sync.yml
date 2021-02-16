@@ -25,7 +25,7 @@ jobs:
       matrix:
         target: [packages,packages-19.07]
         
-     steps:
+    steps:
       - name: delete
         run: |
           
