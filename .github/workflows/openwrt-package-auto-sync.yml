@@ -14,8 +14,6 @@ env:
   REPO_TOKEN: ${{ secrets.REPO_TOKEN }}
   SCKEY: ${{ secrets.SCKEY }}
   TZ: Asia/Shanghai
-  281677160_REPO: https://github.com/281677160/openwrt-package.git
-  DYLAN8888_REPO: https://${{ secrets.REPO_TOKEN }}@github.com/dylan8888/openwrt-package.git
 
 jobs:
   build:
@@ -43,8 +41,8 @@ jobs:
     - name: Clone packages
       run: |
         cd $GITHUB_WORKSPACE
-        git clone -b ${{matrix.target}} ${{281677160_REPO}} ${{matrix.target}}
-        git remote add target ${{DYLAN8888_REPO}}
+        git clone -b ${{matrix.target}} https://github.com/281677160/openwrt-package.git ${{matrix.target}}
+        git remote add target https://${{ secrets.REPO_TOKEN }}@github.com/dylan8888/openwrt-package.git
         cd ${{matrix.target}}
         rm -Rf *
         git rm --cache *
