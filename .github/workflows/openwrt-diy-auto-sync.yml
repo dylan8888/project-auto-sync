@@ -1,4 +1,4 @@
-name: lede-auto-sync
+name: openwrt-diy-auto-sync
 
 on:
   push:
