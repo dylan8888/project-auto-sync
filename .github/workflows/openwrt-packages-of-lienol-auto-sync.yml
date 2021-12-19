@@ -23,7 +23,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        target: [main,19.07,21.02]
+        target: [main]
         
     steps:
       - name: delete
