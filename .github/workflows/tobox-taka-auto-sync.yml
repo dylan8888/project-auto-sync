@@ -1,4 +1,4 @@
-name: lede-auto-sync
+name: tobox-taka-auto-sync
 
 on:
   push:
